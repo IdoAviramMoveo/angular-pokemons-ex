@@ -1,10 +1,36 @@
-.pokemon-list {
+.pokemons-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); // Create 5 equal columns
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
+  justify-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 app-pokemon-card {
-  flex: 0 0 180px;
   margin: 10px;
+}
+
+app-pokemons-filters {
+  display: block;
+  margin: auto;
+  max-width: calc(200px * 6 + 10px * (5 - 1));
+}
+
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; // Example: make it take the full viewport height
 }

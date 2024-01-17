@@ -1,0 +1,117 @@
+.pokemon-detail {
+  width: 400px;
+  height: 400px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.pokemon-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.pokemon-info {
+  .pokemon-name {
+    font-size: 40px;
+    margin: 10px 0;
+  }
+
+  .pokemon-types {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+
+    li {
+      display: inline-block;
+      border-radius: 10px;
+      padding: 5px 10px;
+      color: white;
+      font-weight: bold;
+      text-transform: capitalize;
+      margin: 2px;
+      background-color: #e0e0e0;
+    }
+  }
+
+  .pokemon-abilities {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+
+    li {
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin: 5px 0;
+      text-align: center;
+    }
+  }
+}
+
+.type-normal {
+  background-color: #a8a77a !important;
+}
+.type-fire {
+  background-color: #ee8130 !important;
+}
+.type-water {
+  background-color: #6390f0 !important;
+}
+.type-electric {
+  background-color: #f7d02c !important;
+}
+.type-grass {
+  background-color: #7ac74c !important;
+}
+.type-ice {
+  background-color: #96d9d6 !important;
+}
+.type-fighting {
+  background-color: #c22e28 !important;
+}
+.type-poison {
+  background-color: #a33ea1 !important;
+}
+.type-ground {
+  background-color: #e2bf65 !important;
+}
+.type-flying {
+  background-color: #a98ff3 !important;
+}
+.type-psychic {
+  background-color: #f95587 !important;
+}
+.type-bug {
+  background-color: #a6b91a !important;
+}
+.type-rock {
+  background-color: #b6a136 !important;
+}
+.type-ghost {
+  background-color: #735797 !important;
+}
+.type-dragon {
+  background-color: #6f35fc !important;
+}
+.type-dark {
+  background-color: #705746 !important;
+}
+.type-steel {
+  background-color: #b7b7ce !important;
+}
+.type-fairy {
+  background-color: #d685ad !important;
+}
