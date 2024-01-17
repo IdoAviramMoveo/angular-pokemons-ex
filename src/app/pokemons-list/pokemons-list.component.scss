@@ -1,0 +1,10 @@
+.pokemon-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); // Create 5 equal columns
+  gap: 10px;
+}
+
+app-pokemon-card {
+  flex: 0 0 180px;
+  margin: 10px;
+}
