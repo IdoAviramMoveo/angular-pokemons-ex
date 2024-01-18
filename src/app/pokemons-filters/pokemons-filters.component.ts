@@ -29,7 +29,9 @@ export class PokemonsFiltersComponent implements OnInit {
   }
 
   onFilterChange() {
-    const activeFilters = this.types.filter((type) => this.selectedTypes[type]);
+    const activeFilters: string[] = this.types.filter(
+      (type) => this.selectedTypes[type]
+    );
     this.filter.emit(activeFilters);
   }
 }

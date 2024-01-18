@@ -13,9 +13,7 @@ export class PokemonDetailsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    const storedPokemon = localStorage.getItem('selectedPokemon');
+    const storedPokemon: string = localStorage.getItem('selectedPokemon');
     this.pokemon = storedPokemon ? JSON.parse(storedPokemon) : this.pokemon;
-
-    console.log(this.pokemon);
   }
 }
