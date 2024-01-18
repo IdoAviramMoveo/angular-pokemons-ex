@@ -54,10 +54,6 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       outline: none;
-
-      &:focus {
-        border-color: blue;
-      }
     }
 
     button {
@@ -67,10 +63,6 @@
       background-color: #007bff;
       color: white;
       cursor: pointer;
-
-      &:hover {
-        background-color: #0056b3;
-      }
     }
   }
 }

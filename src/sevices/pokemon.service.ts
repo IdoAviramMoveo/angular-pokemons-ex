@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, catchError, finalize } from 'rxjs/operators';
 
-import { Pokemon } from './pokemon.model';
+import { Pokemon } from '../models/pokemon.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
-  selectedPokemon: Pokemon | null = null;
+  selectedPokemon: Pokemon = new Pokemon();
   private apiUrl: string = 'https://pokeapi.co/api/v2/pokemon';
 
   private allTypes: string[] = [

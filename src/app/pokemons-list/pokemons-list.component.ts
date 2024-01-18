@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 
-import { PokemonService } from '../pokemon.service';
-import { Pokemon } from '../pokemon.model';
+import { PokemonService } from '../../sevices/pokemon.service';
+import { Pokemon } from '../../models/pokemon.model';
 
 @Component({
   selector: 'app-pokemons-list',
@@ -27,6 +27,7 @@ export class PokemonsListComponent implements OnInit {
     this.pokemonService.getPokemons().subscribe(
       (data: any) => {
         //change to specifix type
+        console.log(data);
         const pokemonsList: { name: string; url: string }[] = data.results;
         const detailObservables = pokemonsList.map((pokemon) =>
           this.pokemonService.getPokemon(pokemon.url)
@@ -34,7 +35,6 @@ export class PokemonsListComponent implements OnInit {
 
         forkJoin(detailObservables).subscribe((pokemonsDetails) => {
           this.pokemons = pokemonsDetails.map((data: any) => ({
-            //change type
             id: data.id,
             name: data.name,
             imageUrl: data.sprites.front_default,

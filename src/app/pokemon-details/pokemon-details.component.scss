@@ -3,7 +3,7 @@
 .pokemon-detail {
   width: 400px;
   height: 400px;
-  border: 1px solid #ccc;
+  border: 1px solid $color-border;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -13,7 +13,7 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
-  background-color: #f9f9f9;
+  background-color: white;
 }
 
 .pokemon-image {
@@ -43,7 +43,7 @@
       font-weight: bold;
       text-transform: capitalize;
       margin: 2px;
-      background-color: #e0e0e0;
+      background-color: $color-default;
 
       @include apply-pokemon-types;
     }
@@ -55,8 +55,8 @@
     margin-top: 10px;
 
     li {
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
+      background-color: $color-default;
+      border: 1px solid $color-border;
       border-radius: 5px;
       padding: 5px 10px;
       margin: 5px 0;

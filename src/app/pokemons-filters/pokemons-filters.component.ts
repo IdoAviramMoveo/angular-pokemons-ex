@@ -1,6 +1,7 @@
 // pokemons-filters.component.ts
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { PokemonService } from '../pokemon.service';
+
+import { PokemonService } from '../../sevices/pokemon.service';
 
 @Component({
   selector: 'app-pokemons-filters',

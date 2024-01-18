@@ -1,8 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
-import { PokemonService } from '../pokemon.service';
-import { Pokemon } from '../pokemon.model';
+import { Pokemon } from '../../models/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -10,31 +8,12 @@ import { Pokemon } from '../pokemon.model';
   styleUrl: './pokemon-details.component.scss',
 })
 export class PokemonDetailsComponent implements OnInit {
-  pokemon: Pokemon;
+  pokemon: Pokemon = new Pokemon();
 
-  constructor(
-    private route: ActivatedRoute,
-    private pokemonService: PokemonService
-  ) {
-    this.pokemon = {
-      id: 0,
-      name: '',
-      imageUrl: '',
-      types: [],
-      abilities: [],
-    };
-  }
+  constructor() {}
 
   ngOnInit(): void {
     const storedPokemon = localStorage.getItem('selectedPokemon');
-    this.pokemon = storedPokemon
-      ? JSON.parse(storedPokemon)
-      : {
-          id: 0,
-          name: '',
-          imageUrl: '',
-          types: [],
-          abilities: [],
-        };
+    this.pokemon = storedPokemon ? JSON.parse(storedPokemon) : this.pokemon;
   }
 }
