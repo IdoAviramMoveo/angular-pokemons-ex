@@ -32,7 +32,6 @@ export class PokemonsListComponent implements OnInit {
         );
 
         forkJoin(detailObservables).subscribe((pokemonsDetails) => {
-          console.log(pokemonsDetails);
           this.pokemons = pokemonsDetails.map((data: any) => ({
             id: data.id,
             name: data.name,
