@@ -27,10 +27,3 @@ app-pokemons-filters {
   margin: auto;
   max-width: calc(200px * 6 + 10px * (5 - 1));
 }
-
-.loading-indicator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; // Example: make it take the full viewport height
-}
