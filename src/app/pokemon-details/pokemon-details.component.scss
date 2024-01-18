@@ -1,15 +1,13 @@
 @import "../../styles/mixins";
 
 .pokemon-detail {
+  @include flex-column-center;
   width: 400px;
   height: 400px;
   border: 1px solid $color-border;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
   text-align: center;
   padding: 10px;
