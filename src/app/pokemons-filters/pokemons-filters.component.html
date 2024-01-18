@@ -1,6 +1,6 @@
 <div class="pokemons-filters">
   <div class="type-filters">
-    <label *ngFor="let type of types" [ngClass]="'type-' + type.toLowerCase()">
+    <label *ngFor="let type of types" [class]="type.toLowerCase()">
       <input
         type="checkbox"
         [(ngModel)]="selectedTypes[type]"

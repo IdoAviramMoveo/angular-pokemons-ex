@@ -26,6 +26,7 @@ export class PokemonsListComponent implements OnInit {
   getPokemons(): void {
     this.pokemonService.getPokemons().subscribe(
       (data: any) => {
+        //change to specifix type
         const pokemonsList: { name: string; url: string }[] = data.results;
         const detailObservables = pokemonsList.map((pokemon) =>
           this.pokemonService.getPokemon(pokemon.url)
@@ -33,6 +34,7 @@ export class PokemonsListComponent implements OnInit {
 
         forkJoin(detailObservables).subscribe((pokemonsDetails) => {
           this.pokemons = pokemonsDetails.map((data: any) => ({
+            //change type
             id: data.id,
             name: data.name,
             imageUrl: data.sprites.front_default,
