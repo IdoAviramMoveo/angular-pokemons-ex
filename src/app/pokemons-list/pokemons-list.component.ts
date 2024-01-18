@@ -20,14 +20,11 @@ export class PokemonsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPokemons();
-    this.filteredPokemonsList = this.pokemons;
   }
 
   getPokemons(): void {
     this.pokemonService.getPokemons().subscribe(
       (data: any) => {
-        //change to specifix type
-        console.log(data);
         const pokemonsList: { name: string; url: string }[] = data.results;
         const detailObservables = pokemonsList.map((pokemon) =>
           this.pokemonService.getPokemon(pokemon.url)
