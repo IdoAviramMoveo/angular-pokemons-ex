@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
 
 import { PokemonService } from '../../sevices/pokemon.service';
 import { Pokemon } from '../../models/pokemon.model';
@@ -24,28 +23,9 @@ export class PokemonsListComponent implements OnInit {
 
   getPokemons(): void {
     this.pokemonService.getPokemons().subscribe(
-      (data: any) => {
-        const pokemonsList: { name: string; url: string }[] = data.results;
-        const detailObservables = pokemonsList.map((pokemon) =>
-          this.pokemonService.getPokemon(pokemon.url)
-        );
-
-        forkJoin(detailObservables).subscribe((pokemonsDetails) => {
-          this.pokemons = pokemonsDetails.map((data: any) => ({
-            id: data.id,
-            name: data.name,
-            imageUrl: data.sprites.front_default,
-            types: data.types,
-            abilities: data.abilities.map(
-              (ability: { ability: { name: string; url: string } }) =>
-                ability.ability.name
-            ),
-          }));
-
-          this.pokemons.sort((a, b) => a.id - b.id);
-
-          this.filteredPokemonsList = [...this.pokemons];
-        });
+      (pokemons: Pokemon[]) => {
+        this.pokemons = pokemons;
+        this.filteredPokemonsList = [...this.pokemons];
       },
       (error) => {
         console.error('Error fetching Pokemon list', error);
@@ -57,11 +37,10 @@ export class PokemonsListComponent implements OnInit {
     let filteredByType =
       this.selectedTypes.length > 0
         ? this.pokemons.filter((pokemon) =>
-            pokemon.types.some((type: any) => {
-              return this.selectedTypes.includes(type.type.name);
-            })
+            pokemon.types.some((type) => this.selectedTypes.includes(type))
           )
         : [...this.pokemons];
+
     this.filteredPokemonsList = filteredByType.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(this.searchFilter.toLowerCase())
     );

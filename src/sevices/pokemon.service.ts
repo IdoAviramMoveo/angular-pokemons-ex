@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, forkJoin, of } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 
 import { Pokemon } from '../models/pokemon.model';
 import { allTypes } from '../models/pokemon-types.model';
@@ -23,16 +24,34 @@ export class PokemonService {
     return of(allTypes);
   }
 
-  getPokemons(
-    limit: number = 100,
-    offset: number = 0
-  ): Observable<{ name: string; url: string }[]> {
+  getPokemons(limit: number = 100, offset: number = 0): Observable<Pokemon[]> {
     const url = `${this.apiUrl}?limit=${limit}&offset=${offset}`;
-    return this.http.get<{ name: string; url: string }[]>(url);
+    return this.http
+      .get<{ results: { name: string; url: string }[] }>(url)
+      .pipe(
+        switchMap((response) => {
+          const detailObservables = response.results.map((pokemon) =>
+            this.getPokemon(pokemon.url).pipe(
+              map((details) => this.transformPokemonData(details))
+            )
+          );
+          return forkJoin(detailObservables);
+        })
+      );
   }
 
-  getPokemon(url: string): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>(url);
+  private transformPokemonData(data: any): Pokemon {
+    return {
+      id: data.id,
+      name: data.name,
+      imageUrl: data.sprites.front_default,
+      types: data.types.map((t: any) => t.type.name),
+      abilities: data.abilities.map((a: any) => a.ability.name),
+    };
+  }
+
+  getPokemon(url: string): Observable<Pokemon> {
+    return this.http.get<Pokemon>(url);
   }
 
   setSelectedPokemon(pokemon: Pokemon) {

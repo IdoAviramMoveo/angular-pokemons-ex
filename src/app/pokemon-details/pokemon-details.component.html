@@ -3,11 +3,8 @@
   <div class="pokemon-info">
     <h1 class="pokemon-name">{{ pokemon.name }}</h1>
     <ul class="pokemon-types">
-      <li
-        *ngFor="let type of pokemon.types"
-        [class]="type.type.name.toLowerCase()"
-      >
-        {{ type.type.name }}
+      <li *ngFor="let type of pokemon.types" [class]="type.toLowerCase()">
+        {{ type }}
       </li>
     </ul>
     <ul class="pokemon-abilities">
