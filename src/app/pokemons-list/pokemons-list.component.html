@@ -1,12 +1,13 @@
 <div class="pokemons-container">
   <app-pokemons-filters
+    class="filters"
     (search)="onSearch($event)"
     (filter)="onFilterChange($event)"
   ></app-pokemons-filters>
   <div class="pokemons-list">
     <div *ngFor="let pokemon of filteredPokemonsList">
       <a (click)="selectPokemon(pokemon)">
-        <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+        <app-pokemon-card class="card" [pokemon]="pokemon"></app-pokemon-card>
       </a>
     </div>
   </div>
