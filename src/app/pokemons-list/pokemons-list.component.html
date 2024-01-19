@@ -3,7 +3,13 @@
     class="filters"
     (search)="onSearch($event)"
     (filter)="onFilterChange($event)"
-  ></app-pokemons-filters>
+  >
+    <h3 class="search-history-title">The last Pokemons you searched for:</h3>
+    <ul class="search-history">
+      <li *ngFor="let search of getSearchHistory()">{{ search }}</li>
+    </ul>
+  </app-pokemons-filters>
+
   <div class="pokemons-list">
     <div *ngFor="let pokemon of filteredPokemonsList">
       <a (click)="selectPokemon(pokemon)">

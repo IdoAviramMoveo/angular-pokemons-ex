@@ -4,17 +4,18 @@ import { Observable, forkJoin, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
 import { Pokemon } from '../models/pokemon.model';
-import { allTypes } from '../models/pokemon-types.model';
+import { allTypes } from '../constants/pokemon-types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
   selectedPokemon: Pokemon = new Pokemon();
+  private readonly storageKey = 'selectedPokemon';
   private apiUrl: string = 'https://pokeapi.co/api/v2/pokemon';
 
   constructor(private http: HttpClient) {
-    const storedPokemon = localStorage.getItem('selectedPokemon');
+    const storedPokemon = localStorage.getItem(this.storageKey);
     if (storedPokemon) {
       this.selectedPokemon = JSON.parse(storedPokemon);
     }
@@ -56,7 +57,7 @@ export class PokemonService {
 
   setSelectedPokemon(pokemon: Pokemon) {
     this.selectedPokemon = pokemon;
-    localStorage.setItem('selectedPokemon', JSON.stringify(pokemon));
+    localStorage.setItem(this.storageKey, JSON.stringify(pokemon));
   }
 
   getSelectedPokemon() {
