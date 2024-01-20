@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MainLayoutComponent } from './main-layout/main-layout.component';
-import { PokemonsListComponent } from './pokemons-list/pokemons-list.component';
-import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
-import { LoginComponent } from './login/login.component';
+import { MainLayoutComponent } from './components/main-layout/main-layout.component';
+import { PokemonsListComponent } from './components/pokemons-list/pokemons-list.component';
+import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
+import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [

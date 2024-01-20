@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { PokemonService } from '../../services/pokemon.service';
-import { SearchHistoryService } from '../../services/search-history.service';
-import { Pokemon } from '../../models/pokemon.model';
+import { PokemonService } from '../../../services/pokemon.service';
+import { SearchHistoryService } from '../../../services/search-history.service';
+import { Pokemon } from '../../../models/pokemon.model';
 
 @Component({
   selector: 'app-pokemons-list',
@@ -12,7 +12,6 @@ import { Pokemon } from '../../models/pokemon.model';
 })
 export class PokemonsListComponent implements OnInit {
   pokemons: Pokemon[] = [];
-  filteredPokemonsList: Pokemon[] = [];
   selectedTypes: string[] = [];
   searchFilter: string = '';
 
@@ -30,7 +29,6 @@ export class PokemonsListComponent implements OnInit {
     this.pokemonService.getPokemons().subscribe(
       (pokemons: Pokemon[]) => {
         this.pokemons = pokemons;
-        this.filteredPokemonsList = [...this.pokemons];
       },
       (error) => {
         console.error('Error fetching Pokemon list', error);
@@ -38,27 +36,27 @@ export class PokemonsListComponent implements OnInit {
     );
   }
 
-  filterPokemons(): void {
-    let filteredByType =
+  filterPokemons(): Pokemon[] {
+    const typeFilteredPokemons =
       this.selectedTypes.length > 0
         ? this.pokemons.filter((pokemon) =>
             pokemon.types.some((type) => this.selectedTypes.includes(type))
           )
-        : [...this.pokemons];
+        : this.pokemons;
 
-    this.filteredPokemonsList = filteredByType.filter((pokemon) =>
+    return typeFilteredPokemons.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(this.searchFilter.toLowerCase())
     );
   }
 
   onSearch(searchTerm: string): void {
     this.searchFilter = searchTerm;
-    this.filterPokemons();
+    //this.filterPokemons();
   }
 
   onFilterChange(selectedTypes: string[]): void {
     this.selectedTypes = selectedTypes.map((type) => type.toLowerCase());
-    this.filterPokemons();
+    //this.filterPokemons();
   }
 
   selectPokemon(pokemon: Pokemon): void {

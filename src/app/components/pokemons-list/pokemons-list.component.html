@@ -11,7 +11,7 @@
   </app-pokemons-filters>
 
   <div class="pokemons-list">
-    <div *ngFor="let pokemon of filteredPokemonsList">
+    <div *ngFor="let pokemon of filterPokemons()">
       <a (click)="selectPokemon(pokemon)">
         <app-pokemon-card class="card" [pokemon]="pokemon"></app-pokemon-card>
       </a>

@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PokemonsListComponent } from './pokemons-list/pokemons-list.component';
-import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
-import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
+import { PokemonsListComponent } from './components/pokemons-list/pokemons-list.component';
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PokemonsFiltersComponent } from './pokemons-filters/pokemons-filters.component';
-import { LoginComponent } from './login/login.component';
-import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { PokemonsFiltersComponent } from './components/pokemons-filters/pokemons-filters.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [

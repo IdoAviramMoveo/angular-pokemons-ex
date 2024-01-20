@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Pokemon } from '../../models/pokemon.model';
+import { Pokemon } from '../../../models/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-details',
