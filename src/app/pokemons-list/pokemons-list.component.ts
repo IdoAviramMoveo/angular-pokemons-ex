@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { PokemonService } from '../../sevices/pokemon.service';
-import { SearchHistoryService } from '../../sevices/search-history.service';
+import { PokemonService } from '../../services/pokemon.service';
+import { SearchHistoryService } from '../../services/search-history.service';
 import { Pokemon } from '../../models/pokemon.model';
 
 @Component({

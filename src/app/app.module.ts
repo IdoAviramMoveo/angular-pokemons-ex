@@ -9,6 +9,8 @@ import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonsFiltersComponent } from './pokemons-filters/pokemons-filters.component';
+import { LoginComponent } from './login/login.component';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { PokemonsFiltersComponent } from './pokemons-filters/pokemons-filters.co
     PokemonCardComponent,
     PokemonDetailsComponent,
     PokemonsFiltersComponent,
+    LoginComponent,
+    MainLayoutComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

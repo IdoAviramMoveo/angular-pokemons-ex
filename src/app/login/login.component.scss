@@ -1,0 +1,43 @@
+@import "../../styles/mixins";
+
+.login-container {
+  @include flex-column-center;
+  width: 200px;
+  height: 150px;
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  padding: 40px;
+  background-color: white;
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+
+  button {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: $color-login-backgound;
+    color: white;
+    border: 1px solid $color-login-hover;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-login-hover;
+    }
+  }
+
+  .error-message {
+    color: $color-error-message;
+    background-color: $color-error-background;
+    border: 1px solid $color-error-message;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: small;
+  }
+}
