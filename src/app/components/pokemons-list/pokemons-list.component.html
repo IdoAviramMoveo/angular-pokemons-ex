@@ -1,0 +1,20 @@
+<div class="pokemons-container">
+  <app-pokemons-filters
+    class="filters"
+    (search)="onSearch($event)"
+    (filter)="onFilterChange($event)"
+  >
+    <p class="search-history-title">The last Pokemons you searched for:</p>
+    <ul class="search-history">
+      <li *ngFor="let search of getSearchHistory()">{{ search }}</li>
+    </ul>
+  </app-pokemons-filters>
+
+  <div class="pokemons-list">
+    <div *ngFor="let pokemon of filterPokemons()">
+      <a (click)="selectPokemon(pokemon)">
+        <app-pokemon-card class="card" [pokemon]="pokemon"></app-pokemon-card>
+      </a>
+    </div>
+  </div>
+</div>

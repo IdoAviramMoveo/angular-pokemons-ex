@@ -1,0 +1,47 @@
+$color-normal: #a8a77a;
+$color-fire: #ee8130;
+$color-water: #6390f0;
+$color-electric: #f7d02c;
+$color-grass: #7ac74c;
+$color-ice: #96d9d6;
+$color-fighting: #c22e28;
+$color-poison: #a33ea1;
+$color-ground: #e2bf65;
+$color-flying: #a98ff3;
+$color-psychic: #f95587;
+$color-bug: #a6b91a;
+$color-rock: #b6a136;
+$color-ghost: #735797;
+$color-dragon: #6f35fc;
+$color-dark: #705746;
+$color-steel: #b7b7ce;
+$color-fairy: #d685ad;
+
+$color-background: #90ee90;
+$color-default: #e0e0e0;
+$color-border: #ccc;
+$color-error-background: #f9e0e0;
+$color-error-message: #d32f2f;
+$color-login-backgound: #6ba4e0;
+$color-login-hover: #0056b3;
+
+$colors: (
+  normal: $color-normal,
+  fire: $color-fire,
+  water: $color-water,
+  electric: $color-electric,
+  grass: $color-grass,
+  ice: $color-ice,
+  fighting: $color-fighting,
+  poison: $color-poison,
+  ground: $color-ground,
+  flying: $color-flying,
+  psychic: $color-psychic,
+  bug: $color-bug,
+  rock: $color-rock,
+  ghost: $color-ghost,
+  dragon: $color-dragon,
+  dark: $color-dark,
+  steel: $color-steel,
+  fairy: $color-fairy,
+);

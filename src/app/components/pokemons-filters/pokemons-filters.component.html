@@ -1,0 +1,22 @@
+<div class="pokemons-filters">
+  <div class="type-filters">
+    <label *ngFor="let type of types" [class]="type.toLowerCase()">
+      <input
+        type="checkbox"
+        [(ngModel)]="selectedTypes[type]"
+        (change)="onFilterChange()"
+      />
+      {{ type }}
+    </label>
+  </div>
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search by name..."
+      (input)="onSearch()"
+    />
+  </div>
+  <hr />
+  <ng-content></ng-content>
+</div>

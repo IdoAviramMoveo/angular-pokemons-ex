@@ -1,0 +1,15 @@
+@import "variables";
+
+@mixin apply-pokemon-types {
+  @each $type, $color in $colors {
+    &.#{$type} {
+      background-color: $color;
+    }
+  }
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
