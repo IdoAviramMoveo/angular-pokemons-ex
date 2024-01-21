@@ -4,7 +4,7 @@
     (search)="onSearch($event)"
     (filter)="onFilterChange($event)"
   >
-    <h3 class="search-history-title">The last Pokemons you searched for:</h3>
+    <p class="search-history-title">The last Pokemons you searched for:</p>
     <ul class="search-history">
       <li *ngFor="let search of getSearchHistory()">{{ search }}</li>
     </ul>
