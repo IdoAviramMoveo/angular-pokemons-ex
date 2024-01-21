@@ -55,12 +55,12 @@ export class PokemonService {
     return this.http.get<Pokemon>(url);
   }
 
-  setSelectedPokemon(pokemon: Pokemon) {
+  setSelectedPokemon(pokemon: Pokemon): void {
     this.selectedPokemon = pokemon;
     localStorage.setItem(this.storageKey, JSON.stringify(pokemon));
   }
 
-  getSelectedPokemon() {
+  getSelectedPokemon(): Pokemon {
     return this.selectedPokemon;
   }
 }
