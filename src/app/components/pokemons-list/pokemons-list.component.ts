@@ -14,6 +14,7 @@ export class PokemonsListComponent implements OnInit {
   pokemons: Pokemon[] = [];
   selectedTypes: string[] = [];
   searchFilter: string = '';
+  searchHistory: string[] = [];
 
   constructor(
     private pokemonService: PokemonService,
@@ -23,6 +24,7 @@ export class PokemonsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPokemons();
+    this.updateSearchHistory();
   }
 
   getPokemons(): void {
@@ -60,9 +62,14 @@ export class PokemonsListComponent implements OnInit {
   selectPokemon(pokemon: Pokemon): void {
     if (this.searchFilter) {
       this.searchHistoryService.addSearchedPokemons(pokemon.name);
+      this.updateSearchHistory();
     }
     this.pokemonService.setSelectedPokemon(pokemon);
     this.router.navigate(['/pokemon', pokemon.id]);
+  }
+
+  updateSearchHistory(): void {
+    this.searchHistory = this.searchHistoryService.getSearchHistory();
   }
 
   getSearchHistory(): string[] {
