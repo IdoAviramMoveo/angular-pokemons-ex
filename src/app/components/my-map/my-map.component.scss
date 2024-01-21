@@ -1,5 +1,41 @@
-.map-square {
-  width: 500px;
-  height: 500px;
-  border: 2px solid black;
+@import "../../../styles/mixins";
+
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .map-square {
+    width: 500px;
+    height: 500px;
+    border: 2px solid black;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      width: 380px;
+    }
+
+    button {
+      padding: 10px;
+      border-radius: 10px;
+      background-color: $color-login-backgound;
+      color: white;
+      border: 1px solid $color-login-hover;
+      cursor: pointer;
+      margin-left: 10px;
+
+      &:hover {
+        background-color: $color-login-hover;
+      }
+    }
+  }
 }

@@ -33,12 +33,12 @@
 
   button {
     padding-right: 20px;
-    padding-bottom: 5px;
+    font-weight: bold;
     background-color: transparent;
     border: none;
     cursor: pointer;
     color: black;
-    font-size: medium;
+    font-size: large;
 
     &:hover {
       color: $color-login-hover;
