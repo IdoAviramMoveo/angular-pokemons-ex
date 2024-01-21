@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { PokemonsFiltersComponent } from './components/pokemons-filters/pokemons-filters.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
+import { SelectionPageComponent } from './components/selection-page/selection-page.component';
+import { MyMapComponent } from './components/my-map/my-map.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
     PokemonsFiltersComponent,
     LoginComponent,
     MainLayoutComponent,
+    SelectionPageComponent,
+    MyMapComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

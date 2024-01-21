@@ -16,7 +16,7 @@ export class LoginComponent {
 
   onLogin(): void {
     if (this.authService.login(this.email)) {
-      this.router.navigate(['/pokemons']);
+      this.router.navigate(['/selection']);
     } else {
       this.errorMessage = 'Unauthorized email address';
     }
