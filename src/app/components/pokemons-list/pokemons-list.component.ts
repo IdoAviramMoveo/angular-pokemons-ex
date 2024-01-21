@@ -51,12 +51,10 @@ export class PokemonsListComponent implements OnInit {
 
   onSearch(searchTerm: string): void {
     this.searchFilter = searchTerm;
-    //this.filterPokemons();
   }
 
   onFilterChange(selectedTypes: string[]): void {
     this.selectedTypes = selectedTypes.map((type) => type.toLowerCase());
-    //this.filterPokemons();
   }
 
   selectPokemon(pokemon: Pokemon): void {
