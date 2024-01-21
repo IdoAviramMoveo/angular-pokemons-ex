@@ -1,5 +1,9 @@
-<div *ngIf="authService.isLoggedIn()" class="logout-container">
-  <button (click)="onLogout()">Log out</button>
-</div>
+<nav class="navigation-bar">
+  <ul class="nav-links">
+    <li><a routerLink="/pokemons">Pokémons</a></li>
+    <li><a routerLink="/my-map">My Map</a></li>
+  </ul>
+  <button (click)="onLogout()" class="logout-button">Log Out</button>
+</nav>
 
 <router-outlet></router-outlet>
