@@ -11,7 +11,7 @@ import { allTypes } from '../constants/pokemon-types';
 })
 export class PokemonService {
   selectedPokemon: Pokemon = new Pokemon();
-  private readonly storageKey = 'selectedPokemon';
+  private readonly storageKey: string = 'selectedPokemon';
   private apiUrl: string = 'https://pokeapi.co/api/v2/pokemon';
 
   constructor(private http: HttpClient) {

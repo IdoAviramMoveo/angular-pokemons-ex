@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class SearchHistoryService {
   private searchHistory: string[] = [];
-  private readonly maxHistoryLength = 5;
-  private readonly storageKey = 'searchHistory';
+  private readonly maxHistoryLength: number = 5;
+  private readonly storageKey: string = 'searchHistory';
 
   constructor() {
     this.loadSearchHistory();

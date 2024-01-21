@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly storageKey = 'isLoggedIn';
-  private readonly authEmail = 'demo@skills.co.il';
+  private readonly storageKey: string = 'isLoggedIn';
+  private readonly authEmail: string = 'demo@skills.co.il';
 
   constructor() {}
 
