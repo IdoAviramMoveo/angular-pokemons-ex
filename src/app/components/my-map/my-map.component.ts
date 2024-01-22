@@ -2,6 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { styledMap } from '../../../constants/styled-map';
 import { GoogleMapsService } from '../../../services/google-maps.service';
+import {
+  officeLocation,
+  homeLocation,
+  defaultZoomLevel,
+} from '../../../constants/map-data';
 
 @Component({
   selector: 'app-my-map',
@@ -12,25 +17,18 @@ export class MyMapComponent implements OnInit {
   @ViewChild('mapContainer') mapContainer!: ElementRef;
 
   private map!: google.maps.Map;
-  private markers: google.maps.Marker[] = [];
+  private markers: google.maps.Marker[];
   private autocomplete!: google.maps.places.Autocomplete;
   private directionsService!: google.maps.DirectionsService;
   private directionsRenderer!: google.maps.DirectionsRenderer;
+  private isCustomStyleApplied: boolean;
+  private areDirectionsShown: boolean;
 
-  private isCustomStyleApplied: boolean = false;
-  private customStyles: google.maps.MapTypeStyle[] = styledMap;
-  private defaultStyles: google.maps.MapTypeStyle[] = [];
-
-  private officeLocation: google.maps.LatLngLiteral = {
-    lat: 32.06462,
-    lng: 34.77163,
-  };
-  private homeLocation: google.maps.LatLngLiteral = {
-    lat: 31.979583,
-    lng: 34.771702,
-  };
-
-  constructor(private googleMapsService: GoogleMapsService) {}
+  constructor(private googleMapsService: GoogleMapsService) {
+    this.markers = [];
+    this.isCustomStyleApplied = false;
+    this.areDirectionsShown = false;
+  }
 
   ngOnInit() {
     this.googleMapsService
@@ -43,16 +41,16 @@ export class MyMapComponent implements OnInit {
 
   private initializeMap(): void {
     this.map = new google.maps.Map(this.mapContainer.nativeElement, {
-      center: this.officeLocation,
-      zoom: 11,
-      styles: this.defaultStyles,
+      center: officeLocation,
+      zoom: defaultZoomLevel,
+      styles: this.isCustomStyleApplied ? styledMap : [],
     });
 
     this.directionsService = new google.maps.DirectionsService();
     this.directionsRenderer = new google.maps.DirectionsRenderer();
     this.directionsRenderer.setMap(this.map);
 
-    this.addMarker(this.officeLocation, 'Office Location');
+    this.addMarker(officeLocation, 'Office Location');
     this.setupAutocomplete();
   }
 
@@ -72,7 +70,7 @@ export class MyMapComponent implements OnInit {
     const place = this.autocomplete.getPlace();
     if (place.geometry) {
       this.map.setCenter(place.geometry.location);
-      this.map.setZoom(14);
+      this.map.setZoom(defaultZoomLevel);
 
       this.addMarker(place.geometry.location, place.name);
     } else {
@@ -91,26 +89,31 @@ export class MyMapComponent implements OnInit {
 
   toggleMapStyle(): void {
     this.isCustomStyleApplied = !this.isCustomStyleApplied;
-    this.map.setOptions({
-      styles: this.isCustomStyleApplied
-        ? this.customStyles
-        : this.defaultStyles,
-    });
+    this.map.setOptions({ styles: this.isCustomStyleApplied ? styledMap : [] });
   }
 
   showDirections(): void {
-    const request: google.maps.DirectionsRequest = {
-      origin: this.homeLocation,
-      destination: this.officeLocation,
-      travelMode: google.maps.TravelMode.DRIVING,
-    };
+    if (!this.areDirectionsShown) {
+      const request: google.maps.DirectionsRequest = {
+        origin: homeLocation,
+        destination: officeLocation,
+        travelMode: google.maps.TravelMode.WALKING,
+      };
 
-    this.directionsService.route(request, (result, status) => {
-      if (status === 'OK') {
-        this.directionsRenderer.setDirections(result);
-      } else {
-        console.error('Directions request failed:' + status);
+      this.directionsService.route(request, (result, status) => {
+        if (status === 'OK') {
+          this.directionsRenderer.setDirections(result);
+          this.directionsRenderer.setMap(this.map);
+          this.areDirectionsShown = true;
+        } else {
+          console.error('Directions request failed:' + status);
+        }
+      });
+    } else {
+      if (this.directionsRenderer) {
+        this.directionsRenderer.setMap(null);
+        this.areDirectionsShown = false;
       }
-    });
+    }
   }
 }

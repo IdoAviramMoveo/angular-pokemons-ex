@@ -20,10 +20,7 @@ export class AppComponent {
   }
 
   showPokemonLogo(): boolean {
-    return (
-      this.currentRoute.includes('/pokemons') ||
-      this.currentRoute.startsWith('/pokemon/')
-    );
+    return this.currentRoute.startsWith('/pokemon');
   }
 
   showGoogleMapsLogo(): boolean {
