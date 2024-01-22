@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Loader } from '@googlemaps/js-api-loader';
 
 import { styledMap } from '../../../constants/styled-map';
-import { environment } from '../../../enviroments/enviroment';
+import { GoogleMapsService } from '../../../services/google-maps.service';
 
 @Component({
   selector: 'app-my-map',
@@ -31,29 +30,30 @@ export class MyMapComponent implements OnInit {
     lng: 34.771702,
   };
 
+  constructor(private googleMapsService: GoogleMapsService) {}
+
   ngOnInit() {
-    const loader = new Loader({
-      apiKey: environment.googleMapsApiKey,
-      version: 'weekly',
-      libraries: ['places'],
-    });
-
-    loader.load().then(() => {
-      const defaultLocations = { lat: 32.06462, lng: 34.77163 };
-
-      this.map = new google.maps.Map(this.mapContainer.nativeElement, {
-        center: defaultLocations,
-        zoom: 14,
-        styles: this.defaultStyles,
+    this.googleMapsService
+      .getLoader()
+      .load()
+      .then(() => {
+        this.initializeMap();
       });
+  }
 
-      this.directionsService = new google.maps.DirectionsService();
-      this.directionsRenderer = new google.maps.DirectionsRenderer();
-      this.directionsRenderer.setMap(this.map);
-
-      this.addMarker(defaultLocations, 'Default Location');
-      this.setupAutocomplete();
+  private initializeMap(): void {
+    this.map = new google.maps.Map(this.mapContainer.nativeElement, {
+      center: this.officeLocation,
+      zoom: 11,
+      styles: this.defaultStyles,
     });
+
+    this.directionsService = new google.maps.DirectionsService();
+    this.directionsRenderer = new google.maps.DirectionsRenderer();
+    this.directionsRenderer.setMap(this.map);
+
+    this.addMarker(this.officeLocation, 'Office Location');
+    this.setupAutocomplete();
   }
 
   addMarker(
