@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  Renderer2,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { styledMap } from '../../../constants/styled-map';
 import { GoogleMapsService } from '../../../services/google-maps.service';
@@ -31,10 +25,7 @@ export class MyMapComponent implements OnInit {
   private isCustomStyleApplied: boolean;
   private areDirectionsShown: boolean;
 
-  constructor(
-    private googleMapsService: GoogleMapsService,
-    private renderer: Renderer2
-  ) {
+  constructor(private googleMapsService: GoogleMapsService) {
     this.markers = [];
     this.isCustomStyleApplied = false;
     this.areDirectionsShown = false;
