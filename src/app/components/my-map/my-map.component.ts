@@ -11,13 +11,24 @@ import { styledMap } from '../../../constants/styled-map';
 export class MyMapComponent implements OnInit {
   @ViewChild('mapContainer') mapContainer!: ElementRef;
 
-  private map: google.maps.Map;
+  private map!: google.maps.Map;
   private markers: google.maps.Marker[] = [];
-  private autocomplete: google.maps.places.Autocomplete;
+  private autocomplete!: google.maps.places.Autocomplete;
+  private directionsService!: google.maps.DirectionsService;
+  private directionsRenderer!: google.maps.DirectionsRenderer;
 
   private isCustomStyleApplied: boolean = false;
   private customStyles: google.maps.MapTypeStyle[] = styledMap;
   private defaultStyles: google.maps.MapTypeStyle[] = [];
+
+  private officeLocation: google.maps.LatLngLiteral = {
+    lat: 32.06462,
+    lng: 34.77163,
+  };
+  private homeLocation: google.maps.LatLngLiteral = {
+    lat: 31.979583,
+    lng: 34.771702,
+  };
 
   ngOnInit() {
     const loader = new Loader({
@@ -27,22 +38,20 @@ export class MyMapComponent implements OnInit {
     });
 
     loader.load().then(() => {
-      const defaultPosition = { lat: 32.06462, lng: 34.77163 };
+      const defaultLocations = { lat: 32.06462, lng: 34.77163 };
 
       this.map = new google.maps.Map(this.mapContainer.nativeElement, {
-        center: defaultPosition,
+        center: defaultLocations,
         zoom: 14,
         styles: this.defaultStyles,
       });
 
-      this.addMarker(defaultPosition, 'Default Location');
+      this.directionsService = new google.maps.DirectionsService();
+      this.directionsRenderer = new google.maps.DirectionsRenderer();
+      this.directionsRenderer.setMap(this.map);
 
-      const input = document.getElementById('addressInput') as HTMLInputElement;
-      this.autocomplete = new google.maps.places.Autocomplete(input);
-
-      this.autocomplete.addListener('place_changed', () => {
-        this.addMarkerFromInput();
-      });
+      this.addMarker(defaultLocations, 'Default Location');
+      this.setupAutocomplete();
     });
   }
 
@@ -58,7 +67,7 @@ export class MyMapComponent implements OnInit {
     this.markers.push(marker);
   }
 
-  addMarkerFromInput() {
+  addMarkerFromInput(): void {
     const place = this.autocomplete.getPlace();
     if (place.geometry) {
       this.map.setCenter(place.geometry.location);
@@ -70,12 +79,37 @@ export class MyMapComponent implements OnInit {
     }
   }
 
-  toggleMapStyle() {
+  private setupAutocomplete(): void {
+    const input = document.getElementById('addressInput') as HTMLInputElement;
+    this.autocomplete = new google.maps.places.Autocomplete(input);
+
+    this.autocomplete.addListener('place_changed', () => {
+      this.addMarkerFromInput();
+    });
+  }
+
+  toggleMapStyle(): void {
     this.isCustomStyleApplied = !this.isCustomStyleApplied;
     this.map.setOptions({
       styles: this.isCustomStyleApplied
         ? this.customStyles
         : this.defaultStyles,
+    });
+  }
+
+  showDirections(): void {
+    const request: google.maps.DirectionsRequest = {
+      origin: this.homeLocation,
+      destination: this.officeLocation,
+      travelMode: google.maps.TravelMode.DRIVING,
+    };
+
+    this.directionsService.route(request, (result, status) => {
+      if (status === 'OK') {
+        this.directionsRenderer.setDirections(result);
+      } else {
+        console.error('Directions request failed due to ' + status);
+      }
     });
   }
 }
