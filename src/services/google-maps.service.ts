@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Loader } from '@googlemaps/js-api-loader';
 
-import { environment } from '../enviroments/enviroment';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',

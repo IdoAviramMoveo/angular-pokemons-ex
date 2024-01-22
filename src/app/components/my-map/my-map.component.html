@@ -2,14 +2,13 @@
   <div class="input-container">
     <input
       type="text"
-      id="addressInput"
+      #addressInput
       placeholder="Enter an address"
       autocomplete="on"
     />
     <button (click)="toggleMapStyle()">Toggle Style</button>
+    <button (click)="showDirections()">Show Directions</button>
   </div>
 
   <div #mapContainer class="map-square"></div>
-
-  <button (click)="showDirections()">Show Directions</button>
 </div>

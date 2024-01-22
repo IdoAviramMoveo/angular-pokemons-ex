@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 
 import { styledMap } from '../../../constants/styled-map';
 import { GoogleMapsService } from '../../../services/google-maps.service';
@@ -15,6 +21,7 @@ import {
 })
 export class MyMapComponent implements OnInit {
   @ViewChild('mapContainer') mapContainer!: ElementRef;
+  @ViewChild('addressInput') addressInput!: ElementRef;
 
   private map!: google.maps.Map;
   private markers: google.maps.Marker[];
@@ -24,19 +31,22 @@ export class MyMapComponent implements OnInit {
   private isCustomStyleApplied: boolean;
   private areDirectionsShown: boolean;
 
-  constructor(private googleMapsService: GoogleMapsService) {
+  constructor(
+    private googleMapsService: GoogleMapsService,
+    private renderer: Renderer2
+  ) {
     this.markers = [];
     this.isCustomStyleApplied = false;
     this.areDirectionsShown = false;
   }
 
-  ngOnInit() {
-    this.googleMapsService
-      .getLoader()
-      .load()
-      .then(() => {
-        this.initializeMap();
-      });
+  async ngOnInit() {
+    try {
+      await this.googleMapsService.getLoader().load();
+      this.initializeMap();
+    } catch (error) {
+      console.error('Error loading Google Maps', error);
+    }
   }
 
   private initializeMap(): void {
@@ -58,10 +68,15 @@ export class MyMapComponent implements OnInit {
     position: google.maps.LatLng | google.maps.LatLngLiteral,
     title: string
   ): void {
-    const marker = new google.maps.Marker({
+    const marker: google.maps.Marker = new google.maps.Marker({
       position,
       map: this.map,
       title,
+    });
+
+    marker.addListener('click', () => {
+      marker.setMap(null);
+      this.markers = this.markers.filter((m) => m !== marker);
     });
     this.markers.push(marker);
   }
@@ -79,8 +94,9 @@ export class MyMapComponent implements OnInit {
   }
 
   private setupAutocomplete(): void {
-    const input = document.getElementById('addressInput') as HTMLInputElement;
-    this.autocomplete = new google.maps.places.Autocomplete(input);
+    this.autocomplete = new google.maps.places.Autocomplete(
+      this.addressInput.nativeElement
+    );
 
     this.autocomplete.addListener('place_changed', () => {
       this.addMarkerFromInput();

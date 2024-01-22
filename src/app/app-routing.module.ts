@@ -8,12 +8,22 @@ import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-de
 import { LoginComponent } from './components/login/login.component';
 import { MyMapComponent } from './components/my-map/my-map.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { AuthService } from '../services/auth.service';
+
+export function redirectBasedOnAuth(authService: AuthService): string {
+  return authService.isLoggedIn() ? '/selection' : '/login';
+}
 
 const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'selection',
+        pathMatch: 'full',
+      },
       {
         path: 'selection',
         component: SelectionPageComponent,
@@ -34,11 +44,10 @@ const routes: Routes = [
         component: MyMapComponent,
         canActivate: [AuthGuard],
       },
-      { path: '', redirectTo: '/pokemons', pathMatch: 'full' },
     ],
   },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: '/login' },
+  { path: '**', redirectTo: redirectBasedOnAuth(new AuthService()) },
 ];
 
 @NgModule({
