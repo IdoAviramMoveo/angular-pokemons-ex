@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Loader } from '@googlemaps/js-api-loader';
 
 import { styledMap } from '../../../constants/styled-map';
+import { environment } from '../../../enviroments/enviroment';
 
 @Component({
   selector: 'app-my-map',
@@ -32,7 +33,7 @@ export class MyMapComponent implements OnInit {
 
   ngOnInit() {
     const loader = new Loader({
-      apiKey: 'AIzaSyAgORTeuVwfKVXJl7DoefqL5KRRPYRvgnE',
+      apiKey: environment.googleMapsApiKey,
       version: 'weekly',
       libraries: ['places'],
     });
@@ -108,7 +109,7 @@ export class MyMapComponent implements OnInit {
       if (status === 'OK') {
         this.directionsRenderer.setDirections(result);
       } else {
-        console.error('Directions request failed due to ' + status);
+        console.error('Directions request failed:' + status);
       }
     });
   }
