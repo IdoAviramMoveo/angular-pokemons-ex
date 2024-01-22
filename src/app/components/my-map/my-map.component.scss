@@ -9,6 +9,7 @@
     width: 500px;
     height: 500px;
     border: 2px solid black;
+    border-radius: 5px;
   }
 
   .input-container {
@@ -26,16 +27,26 @@
 
     button {
       padding: 10px;
-      border-radius: 10px;
-      background-color: $color-login-backgound;
-      color: white;
-      border: 1px solid $color-login-hover;
+      border-radius: 5px;
+      background-color: white;
+      border: 2px solid black;
       cursor: pointer;
-      margin-left: 10px;
+      margin-left: 4px;
 
       &:hover {
-        background-color: $color-login-hover;
+        border: 2px solid blue;
       }
+    }
+
+    li {
+      width: 100px;
+      height: 50px;
+      background-color: white;
+      display: flex;
+      text-transform: capitalize;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid $color-border;
     }
   }
 }
