@@ -11,6 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { PokemonsFiltersComponent } from './components/pokemons-filters/pokemons-filters.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
+import { SelectionPageComponent } from './components/selection-page/selection-page.component';
+import { MyMapComponent } from './components/my-map/my-map.component';
+import { MapDisplayComponent } from './components/map-display/map-display.component';
+import { AutocompleteInputComponent } from './components/autocomplete-input/autocomplete-input.component';
+import { MapDirectionsComponent } from './components/map-directions/map-directions.component';
+import { MapControlsComponent } from './components/map-controls/map-controls.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +27,12 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
     PokemonsFiltersComponent,
     LoginComponent,
     MainLayoutComponent,
+    SelectionPageComponent,
+    MyMapComponent,
+    MapDisplayComponent,
+    AutocompleteInputComponent,
+    MapDirectionsComponent,
+    MapControlsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

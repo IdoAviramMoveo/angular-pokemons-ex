@@ -4,14 +4,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
   background-color: $color-background;
+  min-height: 100vh;
   width: 100%;
-  overflow-x: hidden;
+}
 
-  .app-logo {
-    max-width: 500px;
-    width: 100%;
-    height: auto;
-  }
+.outlet {
+  padding-top: 150px; // Add some space between the navbar and content
 }

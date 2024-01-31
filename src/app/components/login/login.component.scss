@@ -8,6 +8,8 @@
   border-radius: 10px;
   padding: 40px;
   background-color: white;
+  margin-top: 100px;
+  border: 1px solid black;
 
   input {
     width: 100%;
@@ -21,7 +23,7 @@
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-    background-color: $color-login-backgound;
+    background-color: $color-login-background;
     color: white;
     border: 1px solid $color-login-hover;
     cursor: pointer;

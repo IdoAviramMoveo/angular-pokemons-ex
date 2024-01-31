@@ -1,5 +1,21 @@
-<div *ngIf="authService.isLoggedIn()" class="logout-container">
-  <button (click)="onLogout()">Log out</button>
-</div>
+<nav class="navigation-bar">
+  <ul class="nav-links">
+    <li><a routerLink="/pokemons">Pokémons</a></li>
+    <li><a routerLink="/my-map">My Map</a></li>
+  </ul>
+  <img
+    *ngIf="showPokemonLogo()"
+    src="assets/images/pokemon-logo.webp"
+    alt="Pokémon Logo"
+    class="app-logo"
+  />
+  <img
+    *ngIf="showGoogleMapsLogo()"
+    src="assets/images/google-maps-logo.png"
+    alt="Google Maps Logo"
+    class="app-logo"
+  />
+  <button (click)="onLogout()" class="logout-button">Log Out</button>
+</nav>
 
 <router-outlet></router-outlet>
