@@ -15,38 +15,37 @@ export function redirectBasedOnAuth(authService: AuthService): string {
 }
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'selection',
+    component: SelectionPageComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
-      {
-        path: '',
-        redirectTo: 'selection',
-        pathMatch: 'full',
-      },
-      {
-        path: 'selection',
-        component: SelectionPageComponent,
-        canActivate: [AuthGuard],
-      },
       {
         path: 'pokemons',
         component: PokemonsListComponent,
-        canActivate: [AuthGuard],
       },
       {
         path: 'pokemon/:id',
         component: PokemonDetailsComponent,
-        canActivate: [AuthGuard],
       },
       {
         path: 'my-map',
         component: MyMapComponent,
-        canActivate: [AuthGuard],
       },
+      { path: '**', redirectTo: 'pokemons', pathMatch: 'full' },
     ],
   },
-  { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    redirectTo: redirectBasedOnAuth(new AuthService()),
+    pathMatch: 'full',
+  },
   { path: '**', redirectTo: redirectBasedOnAuth(new AuthService()) },
 ];
 

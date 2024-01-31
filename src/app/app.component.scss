@@ -7,11 +7,8 @@
   background-color: $color-background;
   min-height: 100vh;
   width: 100%;
-  overflow-x: hidden;
+}
 
-  .app-logo {
-    max-width: 450px;
-    height: auto;
-    margin-top: 5px;
-  }
+.outlet {
+  padding-top: 150px; // Add some space between the navbar and content
 }
