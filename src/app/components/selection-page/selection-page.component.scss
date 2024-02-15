@@ -1,0 +1,33 @@
+@import "../../../styles/mixins";
+
+.selection-container {
+  margin-top: 100px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 40px;
+  background-color: white;
+
+  button {
+    width: 100px;
+    height: 50px;
+    background-color: $color-login-background;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $color-border;
+    border-radius: 5px;
+    color: white;
+    border: 1px solid $color-login-hover;
+    font-size: medium;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-login-hover;
+    }
+  }
+}

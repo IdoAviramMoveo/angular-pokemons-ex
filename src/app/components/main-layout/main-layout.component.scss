@@ -1,0 +1,59 @@
+@import "../../../styles/mixins";
+
+.navigation-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-bottom: 2px solid black;
+  padding: 0 10px;
+  min-height: 85px;
+
+  ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+
+    margin-left: 20px;
+    padding: 0;
+    li {
+      a {
+        text-decoration: none;
+        color: black;
+        margin-right: 20px;
+
+        &:hover {
+          color: $color-login-hover;
+        }
+      }
+    }
+  }
+
+  .app-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 230px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  button {
+    margin-left: auto;
+    margin-right: 30px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: black;
+    font-size: large;
+
+    &:hover {
+      color: $color-login-hover;
+    }
+  }
+}

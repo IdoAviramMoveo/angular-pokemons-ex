@@ -1,0 +1,56 @@
+@import "../../../styles/mixins";
+
+.pokemons-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  justify-items: center;
+  justify-content: center;
+  margin: 0 auto;
+
+  a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .card {
+      margin: 10px;
+    }
+  }
+}
+
+.filters {
+  display: block;
+  margin: auto;
+  max-width: calc(200px * 6 + 10px * (5 - 1));
+}
+
+.search-history-title {
+  font-size: 17px;
+  color: black;
+}
+
+.search-history {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+
+  li {
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    display: flex;
+    text-transform: capitalize;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $color-border;
+  }
+}

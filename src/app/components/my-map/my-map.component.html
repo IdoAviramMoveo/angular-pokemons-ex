@@ -1,0 +1,12 @@
+<app-map-controls
+  (toggleStyle)="toggleMapStyle()"
+  (showDirections)="toggleDirectionsDisplay()"
+></app-map-controls>
+<app-autocomplete-input
+  (placeSelected)="onPlaceSelected($event)"
+></app-autocomplete-input>
+<app-map-display (mapReady)="onMapReady($event)"></app-map-display>
+<app-map-directions
+  [map]="map"
+  [show]="areDirectionsShown"
+></app-map-directions>
